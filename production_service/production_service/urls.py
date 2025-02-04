@@ -17,7 +17,7 @@ Including another URLconf
 
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
-from .views import ProductionViewSet
+from apps.production.views import ProductionViewSet
 
 router = DefaultRouter()
 router.register(r"products", ProductionViewSet)

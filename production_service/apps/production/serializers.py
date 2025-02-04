@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Production
+from apps.production.models import Production
 
 
 class ProductionSerializer(serializers.ModelSerializer):

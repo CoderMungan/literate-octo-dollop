@@ -1,6 +1,6 @@
 from rest_framework import viewsets
-from .models import Production
-from .serializers import ProductionSerializer
+from apps.production.models import Production
+from apps.production.serializers import ProductionSerializer
 
 
 class ProductionViewSet(viewsets.ModelViewSet):
