@@ -1,0 +1,37 @@
+version: '3.8'
+
+services:
+  api_gateway:
+    build: ./api_gateway
+    ports:
+      - "8000:8000"
+    depends_on:
+      - user_service
+      - product_service
+      - order_service
+
+  user_service:
+    build: ./user_service
+    ports:
+      - "8001:8001"
+
+  product_service:
+    build: ./product_service
+    ports:
+      - "8002:8002"
+
+  order_service:
+    build: ./order_service
+    ports:
+      - "8003:8003"
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+
+  redis:
+    image: redis
+    ports:
+      - "6379:6379"

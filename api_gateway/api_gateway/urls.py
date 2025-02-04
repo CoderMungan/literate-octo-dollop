@@ -15,25 +15,8 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.urls import path
-from django.http import HttpResponse
-import requests
-
-def forward_request(request, service, endpoint):
-    service_urls = {
-        'user': 'http://user_service:8001/',
-        'product': 'http://product_service:8002/',
-        'order': 'http://order_service:8003/',
-    }
-    url = f"{service_urls[service]}{endpoint}"
-    response = requests.request(
-        method=request.method,
-        url=url,
-        headers=request.headers,
-        data=request.body,
-        params=request.GET
-    )
-    return HttpResponse(response.content, status=response.status_code)
+from .views import proxy_request
 
 urlpatterns = [
-    path('<str:service>/<path:endpoint>', forward_request),
+    path('<str:service_name>/<path:path>/', proxy_request),
 ]
